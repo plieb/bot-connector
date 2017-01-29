@@ -30,9 +30,6 @@ export default class CiscoSparkService extends ServiceTemplate {
    * Extract information from the request before the pipeline
    */
   static extractOptions (req) {
-  console.log('*************************')
-  console.log(req.body)
-  console.log('*************************')
     const { body } = req
     return {
       chatId: body.data.roomId,
@@ -65,8 +62,6 @@ export default class CiscoSparkService extends ServiceTemplate {
   */
   static formatMessage (conversation, message, opts) {
 
-	console.log(message)
-
 	const msg = {
 	}
 
@@ -93,7 +88,7 @@ export default class CiscoSparkService extends ServiceTemplate {
   static async onChannelCreate (channel) {
     const data = {
 	  'name': channel.slug,
-	  'targetUrl': 'https://ebe5594f.ngrok.io' + '/webhook/' + channel._id,
+	  'targetUrl': 'URL' + '/webhook/' + channel._id,
 	  'resource': 'all',
 	  'event': 'all',
     }
@@ -134,10 +129,6 @@ export default class CiscoSparkService extends ServiceTemplate {
   * send the message to kik
   */
   static async sendMessage (conversation, message, opts) {
-  console.log(message)
-  console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
-  console.log(conversation)
-  console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
     if (conversation.channel.userName !== opts.senderId) {
 	  const spark = new SparkClient({ token: conversation.channel.token });
 
